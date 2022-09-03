@@ -46,4 +46,14 @@ describe("マスを移動できなくなるまで移動して最終のマス目�
       expect.arrayContaining([0, 2])
     );
   });
+  test("無限に移動する場合は−１を返す", () => {
+    const A = [
+      ["R", "R", "D"],
+      ["U", "L", "L"],
+    ];
+    const beltConveyor = new BeltConveyor(A);
+    expect(beltConveyor.getResultPosition()).toEqual(
+      expect.arrayContaining([-1])
+    );
+  });
 });
