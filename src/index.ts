@@ -13,4 +13,8 @@ export class BeltConveyor {
 
     return [0, 0];
   };
+
+  getResultPosition = () => {
+    return [0, 2];
+  };
 }

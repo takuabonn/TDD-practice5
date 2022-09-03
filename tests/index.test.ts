@@ -35,4 +35,15 @@ describe("マスを移動できなくなるまで移動して最終のマス目�
       expect(0 + dy).toBe(-1);
     });
   });
+
+  test("移動できなくなったらそのマス目を返す", () => {
+    const A = [
+      ["R", "D", "U"],
+      ["L", "R", "U"],
+    ];
+    const beltConveyor = new BeltConveyor(A);
+    expect(beltConveyor.getResultPosition()).toEqual(
+      expect.arrayContaining([0, 2])
+    );
+  });
 });
