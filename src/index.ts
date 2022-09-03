@@ -5,7 +5,9 @@ export class BeltConveyor {
     this.Masu = masu;
   }
 
-  judeNextDirection = (): number[] => {
-    return [0, 1];
+  judeNextDirection = (s: string): number[] => {
+    if (s === "R") return [0, 1];
+    if (s === "D") return [1, 0];
+    return [0, 0];
   };
 }
