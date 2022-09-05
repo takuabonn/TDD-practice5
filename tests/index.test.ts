@@ -43,7 +43,7 @@ describe("マスを移動できなくなるまで移動して最終のマス目�
     ];
     const beltConveyor = new BeltConveyor(A);
     expect(beltConveyor.getResultPosition()).toEqual(
-      expect.arrayContaining([0, 2])
+      expect.arrayContaining([1, 3])
     );
   });
   test("無限に移動する場合は−１を返す", () => {

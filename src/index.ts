@@ -19,28 +19,35 @@ export class BeltConveyor {
   };
 
   private isNext = (i: number, j: number) => {
-    if (i < 0 || i > this.Masu.length) {
+    if (i < 0 || i > this.Masu.length - 1) {
       return false;
     }
-    if (j < 0 || j > this.Masu[0].length) {
+    if (j < 0 || j > this.Masu[0].length - 1) {
       return false;
     }
     return true;
   };
 
-  moveRoop = (i: number, j: number): any => {
-    const s = String(i) + "|" + String(j);
-    if (this.AlreadyPathMasu[s]) {
-      return [-1];
+  moveRoop = (i: number, j: number): number[] => {
+    let result: number[] = [];
+    let I = i;
+    let J = j;
+    while (!result.length) {
+      const s = String(I) + "|" + String(J);
+      if (this.AlreadyPathMasu[s]) {
+        result = [-1];
+      }
+      this.AlreadyPathMasu[s] = 1;
+      const [di, dj] = this.judeNextDirection(this.Masu[I][J]);
+      const newI = I + di;
+      const newJ = J + dj;
+      if (!this.isNext(newI, newJ)) {
+        result = [I + 1, J + 1];
+      }
+      I = newI;
+      J = newJ;
     }
-    this.AlreadyPathMasu[s] = 1;
-    const [dx, dy] = this.judeNextDirection(this.Masu[i][j]);
-    const x = i + dx;
-    const y = j + dy;
-    if (!this.isNext(x, y)) {
-      return [i, j];
-    }
-    return this.moveRoop(x, y);
+    return result;
   };
 
   getResultPosition = () => {
